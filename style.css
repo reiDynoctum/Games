@@ -1,5 +1,5 @@
 * {
-    color: brown;
+    color: rgb(69, 42, 165);
 }
 
 h1 {
@@ -12,4 +12,25 @@ article {
 
 h2 {
     font-size: 1.5em;
+}
+
+#nadpis {
+    color: cornflowerblue;
+}
+
+.odstavec {
+    font-size: 1rem;
+}
+
+article > a {
+    font-size: 2rem;
+}
+
+#nadpis ~ p {
+    color: brown;
+}
+
+h1, h2 {
+    color: aquamarine;
+    font-size: 1.8rem;
 }
