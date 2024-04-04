@@ -1,36 +1,16 @@
-* {
-    color: rgb(69, 42, 165);
+html {
+    font-size: 16px;
 }
 
-h1 {
-  font-size: 3.5rem;
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-article {
-    font-size: 1.2rem;
+body {
+    margin: 0;
+    padding: 0;
 }
 
-h2 {
-    font-size: 1.5em;
-}
-
-#nadpis {
-    color: cornflowerblue;
-}
-
-.odstavec {
-    font-size: 1rem;
-}
-
-article > a {
-    font-size: 2rem;
-}
-
-#nadpis ~ p {
-    color: brown;
-}
-
-h1, h2 {
-    color: aquamarine;
-    font-size: 1.8rem;
+img {
+    max-width: 100%;
 }
