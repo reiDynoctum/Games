@@ -31,12 +31,56 @@ html {
 body {
     margin: 0;
     padding: 0;
+    
     font-family: var(--druh-pisma);
+    font-size: 1.123rem;
     background-color: var(--pozadí-app);
+
+}
+
+body, input, button {
+    font-family:  var(--druh-pisma);
+    font-size: 1.125rem;
 }
 
 img {
     max-width: 100%;
+    flex-direction: column;
+
+    input {
+        border: 1px solid var(--barva-ramecku);
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        margin-top: 1.875rem;
+        margin-bottom: 1rem;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+
+    input {
+        width: 29.75rem;
+        padding: 0.875rem;
+        border: 1px solid var(--barva-pisma-neaktivni)
+    }
+
+    input[type="submit"] {
+        border: none;
+        background-color: var(--pozadi-tlacitek);
+        color: var(--barva-pisma-sekundarni);
+        font-weight: 600;
+
+        margin-top: auto;
+    }
+        
+        
 }
 
 .karta-clanku {
@@ -49,6 +93,7 @@ img {
 
     > img {
         width: 38%;
+        border-radius: 2rem;
     }
 
 }
