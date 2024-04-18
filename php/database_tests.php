@@ -81,8 +81,8 @@ function getPost(int $id): object|false {
     global $connection;
 
     try {
-        $statement = $connection->prepare 
-        ('SELECT posts.*, user.name AS author_name, categories.name AS category_name FROM post JOIN users On posts.author=users.id JOIN categories ON posts.category=categories.id WHERE posts.id=:id');
+        $statement = $connection->prepare
+        ('SELECT posts.*, user.name AS author_name, categories.name AS category_name FROM post JOIN users ON posts.author=users.id JOIN categories ON posts.category=categories.id WHERE posts.id=:id');
         return $statement->fetch(PDO::FETCH_OBJ);
     } catch(PDOException $e) {
         echo 'reiDy si trouba';
@@ -94,4 +94,6 @@ $user = getUser(1);
 if ($user) {
     echo json_encode($user);
 }
+
+
 
