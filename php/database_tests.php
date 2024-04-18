@@ -59,3 +59,39 @@ function createCategory(string $name, string $slug): void {
 }
 
 createCategory('Návody', 'navody');
+
+function getUser(int $id): object|false {
+    global $connection;
+
+try {
+    $statement = $connection->prepare('SELECT name, email, role FROM users WHERE id>=:id ORDER BY name ASC, id DESC LIMIT 15');
+    $statement->execute(['id' => $id]);
+    return $statement->fetch(PDO::FETCH_OBJ);
+} catch(PDOException $e) {
+        //echo 'reiDy, máš to rozbitý :D';
+        echo '<pre>';
+        var_dump($e);
+        echo '</pre>';
+        return false;
+}
+
+}
+
+function getPost(int $id): object|false {
+    global $connection;
+
+    try {
+        $statement = $connection->prepare 
+        ('SELECT posts.*, user.name AS author_name, categories.name AS category_name FROM post JOIN users On posts.author=users.id JOIN categories ON posts.category=categories.id WHERE posts.id=:id');
+        return $statement->fetch(PDO::FETCH_OBJ);
+    } catch(PDOException $e) {
+        echo 'reiDy si trouba';
+        return false;
+    }
+}
+$user = getUser(1);
+
+if ($user) {
+    echo json_encode($user);
+}
+
