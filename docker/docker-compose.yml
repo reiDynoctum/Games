@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  database:
+    image: mariadb:10.5.23
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: "app"
+      MYSQL_USER: "app"
+      MYSQL_PASSWORD: "app"
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./database:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    depends_on:
+      - database
+    restart: always
+    environment:
+      - PMA_HOST=mariadb
+    ports:
+      - '8080:80'
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - '8025:8025'
