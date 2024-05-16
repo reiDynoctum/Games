@@ -12,7 +12,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Faker;
-use Faker\Calculator\Inn;
 
 class AppFixtures extends Fixture
 {
@@ -48,6 +47,14 @@ class AppFixtures extends Fixture
                     fn ($text, $paragraph) => $text .= "<p>$paragraph</p>",
                     ""
                 );
+
+                /*
+                $text = $text . "<p>$paragraph</p>"
+
+                function ($text, $paragraph) {
+                    return $text .= "<p>$paragraph</p>";
+                }
+                */
                                 
                 $post = new Post();
                 $post->setName($faker->words(3, true))

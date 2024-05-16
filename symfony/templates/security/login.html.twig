@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Přihlášení{% endblock %}
+
+{% block body %}
+    {% include 'components/public/header.html.twig' %}
+
+    <main class="jednoduchy-formular">
+        <h1>Příhlášení</h1>
+        {% if app.user %}
+            <p>
+                Již jste příhlášen(a) jako: {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Odhlásit se</a>
+            </p>
+        {% else %}
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <div>
+                    <label for="username">Email</label>
+                    <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+                </div>
+                <div>
+                    <label for="password">Heslo</label>
+                    <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+                </div>
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+                <div>
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        Přihlásit se
+                    </button>
+                </div>
+            </form>
+            <p class="na-stred">
+                <a href="{{ path('app_register') }}">Vytvořit účet</a>
+                <br>
+                <a href="{{ path('app_forgot_password_request') }}">Zapomenuté heslo</a>
+            </p>
+        {% endif %}
+    </main>
+
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

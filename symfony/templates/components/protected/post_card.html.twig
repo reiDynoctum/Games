@@ -1,0 +1,10 @@
+<div class="karta-clanku">
+    <img src="{{ asset('images/' ~ post.image) }}" alt="{{ post.name }}">
+    <div class="karta-textace">
+        <h2>{{ post.name }}</h2>
+        <p>{{ post.content|striptags|u.truncate(80, '...') }}</p>
+        <p>
+            <a href="{{ path('app_edit_post_admin', {slug: post.slug}) }}">Upravit</a>
+        </p>
+    </div>
+</div>

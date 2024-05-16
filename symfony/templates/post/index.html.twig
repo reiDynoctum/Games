@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'components/public/header.html.twig' %}
+    
+    <main class="vypis-clanku">
+        <h1>{{ category ? category.name : 'Všechny příspěvky' }}</h1>
+        
+        <div id="clanky">
+            {% for post in posts %}
+                {% include 'components/public/post_card.html.twig' %}
+            {% endfor %}
+        </div>
+
+        <div class="vypis-clanku-tlacitka">
+            <button id="nacti-clanky" type="button" data-slug="{{ category ? category.slug : '' }}">Načíst další články</button>
+        </div>
+
+        <div class="vypis-clanku-tlacitka">
+            <a id="predchozi" href="{{ path('app_posts', {slug: category ? category.slug : null, page: pagination_data.previousPage}) }}" 
+            {% if not pagination_data.hasPreviousPage %}
+                class="vypnuto" aria-disabled="true"
+            {% endif %}
+            >Předchozí</a>
+            <a id="dalsi" href="{{ path('app_posts', {slug: category ? category.slug : null, page: pagination_data.nextPage}) }}"
+            {% if not pagination_data.hasNextPage %}
+                class="vypnuto" aria-disabled="true"
+            {% endif %}
+            >Další</a>
+        </div>
+    </main>
+
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

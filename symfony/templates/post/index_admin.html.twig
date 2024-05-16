@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'components/protected/navbar.html.twig' %}
+    
+    <main class="vypis-clanku main-admin">
+        <div class="nadpis-admin">
+            <h1>Příspěvky</h1>
+            <a href="{{ path('app_create_post_admin') }}" class="tlacitko">Přidat článek</a>
+        </div>
+        
+        <div id="clanky">
+            {% for post in posts %}
+                {% include 'components/protected/post_card.html.twig' %}
+            {% endfor %}
+        </div>
+
+        <div class="vypis-clanku-tlacitka">
+            <a id="predchozi" href="{{ path('app_posts', {page: pagination_data.previousPage}) }}" 
+            {% if not pagination_data.hasPreviousPage %}
+                class="vypnuto" aria-disabled="true"
+            {% endif %}
+            >Předchozí</a>
+            <a id="dalsi" href="{{ path('app_posts', {page: pagination_data.nextPage}) }}"
+            {% if not pagination_data.hasNextPage %}
+                class="vypnuto" aria-disabled="true"
+            {% endif %}
+            >Další</a>
+        </div>
+    </main>
+{% endblock %}

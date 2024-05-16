@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Chyba! {% endblock %}
+
+{% block body %}
+    {% include 'components/public/header.html.twig' %}
+    
+    <main>
+        <h1>Chyba aplikace</h1>
+        <p>Omlouváme se, ale něco se u nás pokazilo, prosím opakujte svůj požadavek později.</p>
+        <p>V případě přetrvání problému nás prosím kontaktujte emailem.</p>
+    </main>
+
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

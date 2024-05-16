@@ -16,6 +16,15 @@ class InfoRepository extends ServiceEntityRepository
         parent::__construct($registry, Info::class);
     }
 
+    public function getInfoPagesFooter(): array
+    {
+        return $this->createQueryBuilder('i')
+            ->select('i.name', 'i.slug')
+            ->orderBy('i.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Info[] Returns an array of Info objects
     //     */

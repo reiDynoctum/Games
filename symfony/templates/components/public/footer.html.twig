@@ -1,0 +1,14 @@
+<footer>
+    <div>
+        <!-- div bude sloužit k rozdělení na dva sloupce -->
+        <div>
+            <b>Logo</b>
+            {% for info in info_pages %}
+                <a href="{{ path('app_info', {slug: info.slug}) }}">{{ info.name }}</a>
+            {% endfor %}
+            <a href="{{ path('app_contact') }}">Kontakt</a>
+        </div>
+        <hr>
+        <p>2024 &copy; domena.cz</p>
+    </div>
+</footer>

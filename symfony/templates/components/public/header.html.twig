@@ -1,0 +1,36 @@
+<nav>
+    <div>
+        <a href="{{ path('app_homepage') }}" class="logo">Logo</a>
+        <div id="odkazy">
+            <a href="{{ path('app_homepage') }}">Domů</a>
+            <div class="odkaz-s-podnavigaci">
+                <a href="{{ path('app_posts') }}">Články</a>
+                <div class="podnavigace">
+                    <div class="podnavigace-odkazy">
+                        {% for category in categories %}
+                            <a href="{{ path('app_posts', {slug: category.slug}) }}">{{ category.name }}</a>
+                        {% endfor %}
+                    </div>                        
+                </div>                    
+            </div>
+            {% if app.user %}
+                <a href="{{ path('app_user_account') }}">Můj účet</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Přihlásit se</a>
+            {% endif %}
+        </div>
+        <svg class="otevrit" width="51" height="51" viewBox="0 0 51 51" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M6.375 12.75H44.625V17H6.375V12.75ZM6.375 23.375H44.625V27.625H6.375V23.375ZM6.375 34H44.625V38.25H6.375V34Z"
+                fill="#F4F4F4" />
+        </svg>
+        <svg class="zavrit" width="51" height="51" viewBox="0 0 51 51" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M40.375 13.6212L37.3788 10.625L25.5 22.5038L13.6212 10.625L10.625 13.6212L22.5038 25.5L10.625 37.3788L13.6212 40.375L25.5 28.4962L37.3788 40.375L40.375 37.3788L28.4962 25.5L40.375 13.6212Z"
+                fill="white" />
+        </svg>
+    </div>
+</nav>
+<img src="{{ asset('graphics/zahlavi.png') }}" alt="Záhlaví blogu" class="obrazek-zahlavi-hlevni-strana">

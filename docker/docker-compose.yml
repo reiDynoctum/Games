@@ -25,9 +25,3 @@ services:
       - PMA_HOST=mariadb
     ports:
       - '8080:80'
-
-  mailhog:
-    image: mailhog/mailhog
-    container_name: mailhog
-    ports:
-      - '8025:8025'

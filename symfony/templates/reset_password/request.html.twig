@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Obnova hesla{% endblock %}
+
+{% block body %}
+    {% include 'components/public/header.html.twig' %}
+
+    <main class="jednoduchy-formular">
+        <h1>Obnova zapomenutého hesla</h1>
+
+        {{ form_start(requestForm) }}
+            {{ form_row(requestForm.email) }}
+            <div>
+                <small>
+                    Zadejte email, kterým jste se registroval(a).
+                </small>
+            </div>
+
+            <button class="btn btn-primary">Obnovit heslo</button>
+        {{ form_end(requestForm) }}
+    </main>
+
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

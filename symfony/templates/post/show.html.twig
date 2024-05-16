@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.name }}{% endblock %}
+
+{% block body %}
+    {% include 'components/public/header.html.twig' %}
+    
+    <main>
+        <section class="clanek">
+            <header>
+                <h1>{{ post.name }}</h1>
+                <p>
+                    <i>{{ post.author.name }}</i>
+                    <i>{{ post.dateCreated|date('d. m. Y') }}</i>
+                    <i>{{ reading_time }} min. čtení</i>
+                </p>
+            </header>
+            <article>
+                {{ post.content|raw }}
+                <img src="{{ asset('images/' ~ post.image) }}" alt="{{ post.name }}">
+            </article>
+        </section>
+
+        <section class="komentare">
+            <h2>Komentáře</h2>
+
+            {% for comment in post.comments %}
+                {% include 'components/public/comment.html.twig' %}
+            {% endfor %}
+
+            {{ form(comment_form) }}
+        </section>
+    </main>
+
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

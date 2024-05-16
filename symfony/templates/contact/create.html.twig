@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kontaktní formulář{% endblock %}
+
+{% block body %}
+    {% include 'components/public/header.html.twig' %}
+    
+    <main class="jednoduchy-formular">
+       <h1>Kontakt</h1>
+        {{ form(contact_form) }}
+    </main>
+
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

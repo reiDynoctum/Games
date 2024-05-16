@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ info.name }}{% endblock %}
+
+{% block body %}
+    {% include 'components/public/header.html.twig' %}
+    <main>
+        <section class="clanek">
+            <header>
+                <h1>{{ info.name }}</h1>
+                <hr>
+            </header>
+            <article>{{ info.content|raw }}</article>
+        </section>
+    </main>
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

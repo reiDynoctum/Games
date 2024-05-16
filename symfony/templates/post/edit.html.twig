@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'components/protected/navbar.html.twig' %}
+    
+    <main class="main-admin">
+            <h1>Úpráva: {{ post.name }}</h1>
+            {{ form_start(edit_form) }}
+                {{ form_row(edit_form.name) }}
+                {{ form_row(edit_form.content) }}
+                {{ form_row(edit_form.category) }}
+                {{ form_row(edit_form.image) }}
+                <img src="{{ asset('images/' ~ post.image) }}" alt="{{ post.name }}" />
+                <div style="flex-direction: row">
+                    <button type="button" data-otevri-dialog="delete-post">Odstranit článek</button>
+                    <button type="submit">Upravit článek</button>
+                </div>
+            {{ form_end(edit_form) }}
+
+            <dialog id="delete-post">
+               <div class="obsah-dialogu">
+                    <p>Opravdu chete odstranit tento článek?</p>
+                    {{ form_start(delete_form, {
+                        action: path('app_delete_post_admin', {slug: post.slug})
+                    }) }}
+                    <div style="display: flex; flex-direction: row; justify-content: space-between">
+                        <button style="width: auto; margin-left: 0;" type="button" data-zavri-dialog="delete-post">Zrušit
+                        </button>
+                        <button type="submit" class="odstraneni"
+                                style="width: auto; margin-left: 0;">Odstranit
+                        </button>
+                    </div>
+                    {{ form_end(delete_form) }}
+                </div>
+            </dialog>
+    </main>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nastavení nového hesla{% endblock %}
+
+{% block body %}
+    {% include 'components/public/header.html.twig' %}
+
+    <main class="jednoduchy-formular">
+        <h1>Nastavte si nové heslo</h1>
+
+        {{ form_start(resetForm) }}
+            {{ form_row(resetForm.plainPassword) }}
+            <button class="btn btn-primary">Nastavit heslo</button>
+        {{ form_end(resetForm) }}
+    </main>
+
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

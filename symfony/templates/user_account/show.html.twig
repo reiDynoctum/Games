@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Můj účet{% endblock %}
+
+{% block body %}
+{% include 'components/public/header.html.twig' %}
+    
+    <main class="jednoduchy-formular">
+        <h1>Můj účet</h1>
+        <p>
+            Jméno: <b>{{ app.user.name }}</b>
+            <br>
+            Email: <b>{{ app.user.email }}</b>
+        </p>
+
+    {{ form(update_password_form) }}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <p><a href="{{ path('app_posts_admin') }}">Administrace</a></p>
+    {% endif %}
+
+    <p><a href="{{ path('app_logout') }}">Odhlásit se</a></p>
+    </main>
+
+    {% include 'components/public/footer.html.twig' %}
+{% endblock %}

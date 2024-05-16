@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -11,9 +13,26 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class PostRepository extends ServiceEntityRepository
 {
+    public const POSTS_PER_PAGE = 6;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
+    }
+
+    public function getPaginatior(Category|null $category, int $offset): Paginator
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(self::POSTS_PER_PAGE)
+            ->setFirstResult($offset);
+
+        if ($category) {
+            $queryBuilder->andWhere('p.category = :category')
+                ->setParameter('category', $category);
+        }
+
+        return new Paginator($queryBuilder->getQuery());
     }
 
     //    /**
